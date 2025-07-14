@@ -35,36 +35,36 @@ const Contact = () => {
     });
   };
 
-  // const contactInfo = [
-  //   {
-  //     icon: Phone,
-  //     title: '전화 상담',
-  //     content: '031-123-4567',
-  //     description: '평일 09:00 - 18:00',
-  //     action: () => handleDirectContact('전화')
-  //   },
-  //   {
-  //     icon: MessageCircle,
-  //     title: '카카오톡 상담',
-  //     content: '@고양모터스',
-  //     description: '실시간 채팅 상담',
-  //     action: () => handleDirectContact('카카오톡')
-  //   },
-  //   {
-  //     icon: Mail,
-  //     title: '이메일 문의',
-  //     content: 'info@goyangmotors.co.kr',
-  //     description: '24시간 접수 가능',
-  //     action: () => handleDirectContact('이메일')
-  //   },
-  //   {
-  //     icon: MapPin,
-  //     title: '매장 방문',
-  //     content: '경기 고양시 일산서구 덕산로 196-51',
-  //     description: '1층 고양모터스',
-  //     action: () => handleDirectContact('매장 안내')
-  //   }
-  // ];
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: '전화 상담',
+      content: '031-123-4567',
+      description: '평일 09:00 - 18:00',
+      action: () => handleDirectContact('전화')
+    },
+    {
+      icon: MessageCircle,
+      title: '카카오톡 상담',
+      content: '@고양모터스',
+      description: '실시간 채팅 상담',
+      action: () => handleDirectContact('카카오톡')
+    },
+    {
+      icon: Mail,
+      title: '이메일 문의',
+      content: 'info@goyangmotors.co.kr',
+      description: '24시간 접수 가능',
+      action: () => handleDirectContact('이메일')
+    },
+    {
+      icon: MapPin,
+      title: '매장 방문',
+      content: '경기 고양시 일산서구 덕산로 196-51',
+      description: '1층 고양모터스',
+      action: () => handleDirectContact('매장 안내')
+    }
+  ];
 
   const businessHours = [
     { day: '평일', time: '09:00 - 18:00' },
@@ -100,7 +100,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {/* Contact Methods */}
-            {/* <div className="grid sm:grid-cols-2 gap-6 mb-12">
+            <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
@@ -119,7 +119,7 @@ const Contact = () => {
                   <p className="text-sm text-gray-500">{info.description}</p>
                 </motion.div>
               ))}
-            </div> */}
+            </div>
 
             {/* Business Hours */}
             <motion.div
@@ -169,7 +169,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -269,7 +269,7 @@ const Contact = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
