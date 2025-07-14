@@ -35,36 +35,36 @@ const Contact = () => {
     });
   };
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: '전화 상담',
-      content: '031-123-4567',
-      description: '평일 09:00 - 18:00',
-      action: () => handleDirectContact('전화')
-    },
-    {
-      icon: MessageCircle,
-      title: '카카오톡 상담',
-      content: '@고양모터스',
-      description: '실시간 채팅 상담',
-      action: () => handleDirectContact('카카오톡')
-    },
-    {
-      icon: Mail,
-      title: '이메일 문의',
-      content: 'info@goyangmotors.co.kr',
-      description: '24시간 접수 가능',
-      action: () => handleDirectContact('이메일')
-    },
-    {
-      icon: MapPin,
-      title: '매장 방문',
-      content: '경기 고양시 일산서구 덕산로 196-51',
-      description: '1층 고양모터스',
-      action: () => handleDirectContact('매장 안내')
-    }
-  ];
+  // const contactInfo = [
+  //   {
+  //     icon: Phone,
+  //     title: '전화 상담',
+  //     content: '031-123-4567',
+  //     description: '평일 09:00 - 18:00',
+  //     action: () => handleDirectContact('전화')
+  //   },
+  //   {
+  //     icon: MessageCircle,
+  //     title: '카카오톡 상담',
+  //     content: '@고양모터스',
+  //     description: '실시간 채팅 상담',
+  //     action: () => handleDirectContact('카카오톡')
+  //   },
+  //   {
+  //     icon: Mail,
+  //     title: '이메일 문의',
+  //     content: 'info@goyangmotors.co.kr',
+  //     description: '24시간 접수 가능',
+  //     action: () => handleDirectContact('이메일')
+  //   },
+  //   {
+  //     icon: MapPin,
+  //     title: '매장 방문',
+  //     content: '경기 고양시 일산서구 덕산로 196-51',
+  //     description: '1층 고양모터스',
+  //     action: () => handleDirectContact('매장 안내')
+  //   }
+  // ];
 
   const businessHours = [
     { day: '평일', time: '09:00 - 18:00' },
@@ -84,7 +84,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            연락처 및 <span className="text-gradient">상담</span>
+            연락처 및 <span className="text-gradient">위치</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             궁금한 점이 있으시거나 상담을 원하시면 언제든지 연락주세요. 
@@ -100,7 +100,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {/* Contact Methods */}
-            <div className="grid sm:grid-cols-2 gap-6 mb-12">
+            {/* <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
@@ -119,7 +119,7 @@ const Contact = () => {
                   <p className="text-sm text-gray-500">{info.description}</p>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
 
             {/* Business Hours */}
             <motion.div
