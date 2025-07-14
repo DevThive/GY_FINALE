@@ -218,7 +218,7 @@ const Reviews = () => {
                 description: "🚧 이 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
               })}
               variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
+              className="border-white text-black hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
             >
               더 많은 후기 보기
             </Button>
