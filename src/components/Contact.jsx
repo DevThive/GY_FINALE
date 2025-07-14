@@ -123,7 +123,7 @@ const Contact = () => {
 
             {/* Business Hours */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white"
@@ -149,7 +149,7 @@ const Contact = () => {
 
             {/* Map */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="mt-8 bg-gray-100 rounded-2xl h-64 flex items-center justify-center"
