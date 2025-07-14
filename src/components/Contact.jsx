@@ -92,7 +92,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:gap-16">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -100,7 +100,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {/* Contact Methods */}
-            <div className="grid sm:gap-6 mb-12">
+            <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
