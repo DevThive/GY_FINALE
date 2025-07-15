@@ -103,13 +103,13 @@ const Services = () => {
               </ul>
 
               {/* CTA */}
-              <Button 
+              {/* <Button 
                 onClick={() => handleServiceInquiry(service.title)}
                 variant="outline" 
                 className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
               >
                 예약 문의
-              </Button>
+              </Button> */}
             </motion.div>
           ))}
         </div>
