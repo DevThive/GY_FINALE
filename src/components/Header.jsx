@@ -80,7 +80,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleNavigation(item)} {/* handleNavigation 함수 사용 */}
+                onClick={() => handleNavigation(item)} 
                 className={`font-medium transition-colors hover:text-blue-600 ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 }`}
@@ -127,7 +127,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => handleNavigation(item)} {/* handleNavigation 함수 사용 */}
+                  onClick={() => handleNavigation(item)} 
                   className="text-left text-gray-700 font-medium hover:text-blue-600 transition-colors"
                 >
                   {item.name}
