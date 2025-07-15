@@ -36,7 +36,8 @@ const Header = () => {
     { name: '홈', id: 'home' },
     { name: '서비스', id: 'services' },
     { name: '고객 후기', id: 'reviews' },
-    { name: '연락처', id: 'contact' }
+    { name: '연락처', id: 'contact' },
+    { name: '정비글', id: 'cars' }
   ];
 
   return (
