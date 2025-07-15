@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
@@ -25,9 +26,6 @@ const Header = () => {
   };
 
   const handleCall = () => {
-    // 실제 전화 연결 기능을 추가하려면 아래 주석 해제 (모바일에서만 작동)
-    // window.location.href = 'tel:031-123-4567';
-
     toast({
       title: "📞 전화 연결",
       description: "🚧 전화 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
@@ -81,17 +79,12 @@ const Header = () => {
 
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            {/* 기존 전화번호 텍스트는 그대로 유지하거나 제거할 수 있습니다. */}
             <div className="flex items-center space-x-2 text-sm">
               <Phone className={`w-4 h-4 ${isScrolled ? 'text-blue-600' : 'text-white'}`} />
               <span className={isScrolled ? 'text-gray-700' : 'text-white'}>
                 031-123-4567
               </span>
             </div>
-            {/* 새로 추가된 "연락처" 버튼 */}
-            <Button onClick={handleCall} className="btn-secondary"> {/* btn-secondary는 예시, 스타일은 직접 정의 */}
-              연락처
-            </Button>
             <Button onClick={() => scrollToSection('contact')} className="btn-primary">
               정비 예약
             </Button>
@@ -128,10 +121,6 @@ const Header = () => {
                   <Phone className="w-4 h-4" />
                   <span>031-123-4567</span>
                 </div>
-                {/* 모바일 메뉴에도 "연락처" 버튼 추가 */}
-                <Button onClick={handleCall} className="w-full btn-secondary mb-2">
-                  연락처
-                </Button>
                 <Button onClick={() => scrollToSection('contact')} className="w-full btn-primary">
                   정비 예약
                 </Button>
