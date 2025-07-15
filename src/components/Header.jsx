@@ -20,11 +20,24 @@ const Header = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+      setIsMenuOpen(false); // 스크롤 후 모바일 메뉴 닫기
+    }
+  };
+
+  const handleNavigation = (item) => {
+    if (item.id === 'cars') {
+      // '정비글'은 새로운 페이지로 이동
+      window.location.href = '/cars'; // 실제 '정비글' 페이지 경로로 변경해주세요
+    } else {
+      // 그 외 항목은 스크롤 이동
+      scrollToSection(item.id);
     }
   };
 
   const handleCall = () => {
+    // 실제 전화 연결 기능을 추가하려면 아래 주석 해제 (모바일에서만 작동)
+    // window.location.href = 'tel:031-123-4567';
+
     toast({
       title: "📞 전화 연결",
       description: "🚧 전화 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
@@ -63,11 +76,11 @@ const Header = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8"> {/* md:flex로 변경 */}
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavigation(item)} {/* handleNavigation 함수 사용 */}
                 className={`font-medium transition-colors hover:text-blue-600 ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 }`}
@@ -85,7 +98,11 @@ const Header = () => {
                 031-123-4567
               </span>
             </div>
-            <Button onClick={() => scrollToSection('contact')} className="btn-primary">
+            {/* "연락처" 버튼 추가 */}
+            <Button onClick={handleCall} className="btn-secondary"> {/* btn-secondary는 예시, 스타일은 직접 정의 */}
+              연락처
+            </Button>
+            <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
               정비 예약
             </Button>
           </div>
@@ -110,7 +127,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavigation(item)} {/* handleNavigation 함수 사용 */}
                   className="text-left text-gray-700 font-medium hover:text-blue-600 transition-colors"
                 >
                   {item.name}
@@ -121,7 +138,11 @@ const Header = () => {
                   <Phone className="w-4 h-4" />
                   <span>031-123-4567</span>
                 </div>
-                <Button onClick={() => scrollToSection('contact')} className="w-full btn-primary">
+                {/* 모바일 메뉴에도 "연락처" 버튼 추가 */}
+                <Button onClick={handleCall} className="w-full btn-secondary mb-2">
+                  연락처
+                </Button>
+                <Button onClick={() => handleNavigation({id: 'contact'})} className="w-full btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
                   정비 예약
                 </Button>
               </div>
