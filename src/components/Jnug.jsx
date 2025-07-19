@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Calendar, Tool, MessageCircle, ThumbsUp, User, Clock } from 'lucide-react';
+import { Plus, Search, Calendar, Wrench, MessageCircle, ThumbsUp, User, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 
@@ -226,7 +226,7 @@ const Jnug = () => {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                      <Tool className="w-16 h-16 text-gray-400" />
+                      <Wrench className="w-16 h-16 text-gray-400" />
                     </div>
                   )}
                   <div className="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
