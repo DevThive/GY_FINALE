@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
@@ -7,21 +6,15 @@ import Services from '@/components/Services';
 import Reviews from '@/components/Reviews';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-// import { ChannelTalkProvider } from './context/ChannelTalkContext';
-// import ChannelTalkController from './components/ChannelTalk/ChannelTalkController';
-// import ChannelTalkButton from './components/ChannelTalk/ChannelTalkButton';
-// import ChannelTalkFloatingButton from './components/ChannelTalk/ChannelTalkFloatingButton';
-// import ChannelTalkStatus from './components/ChannelTalk/ChannelTalkStatus';
+import Jnug from '@/components/Jnug';
 import { Toaster } from '@/components/ui/toaster';
 
 function App() {
   // const [user, setUser] = useState(null);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
    
-
   return (
     <div className="min-h-screen bg-white">
-
       <Helmet>
         <title>고양모터스 - 자동차 정비 및 검사 전문 센터</title>
         <meta name="description" content="고양모터스는 경기도 고양시 최고의 자동차 정비 및 검사 전문 센터입니다. 전문적인 정비, 정밀 검사, 고객 만족을 위한 최상의 서비스를 제공합니다." />
@@ -39,6 +32,7 @@ function App() {
         <Hero />
         <Services />
         <Reviews />
+        <Jnug />
         <Contact />
       </main>
       <Footer />
