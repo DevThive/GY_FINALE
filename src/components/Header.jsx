@@ -98,10 +98,7 @@ const Header = () => {
                 031-123-4567
               </span>
             </div>
-            {/* "연락처" 버튼 추가 */}
-            <Button onClick={handleCall} className="btn-secondary"> {/* btn-secondary는 예시, 스타일은 직접 정의 */}
-              연락처
-            </Button>
+          
             <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
               정비 예약
             </Button>
