@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 로컬 스토리지에서 좋아요 상태 불러오기
+  useEffect(() => {
+    const likedStatus = localStorage.getItem('isLiked') === 'true';
+    setIsLiked(likedStatus);
+  }, []);
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -41,6 +47,20 @@ const Header = () => {
     toast({
       title: "📞 전화 연결",
       description: "🚧 전화 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
+    });
+  };
+
+  // 좋아요 버튼 클릭 핸들러
+  const handleLike = () => {
+    const newLikeStatus = !isLiked;
+    setIsLiked(newLikeStatus);
+    localStorage.setItem('isLiked', newLikeStatus.toString());
+    
+    toast({
+      title: newLikeStatus ? "❤️ 좋아요!" : "💔 좋아요 취소",
+      description: newLikeStatus 
+        ? "고양모터스를 좋아해 주셔서 감사합니다!" 
+        : "다시 좋아해 주실 날을 기다릴게요!"
     });
   };
 
@@ -98,6 +118,21 @@ const Header = () => {
                 031-123-4567
               </span>
             </div>
+            
+            {/* 좋아요 버튼 */}
+            <motion.button
+              onClick={handleLike}
+              whileTap={{ scale: 0.9 }}
+              className={`flex items-center justify-center p-2 rounded-full transition-colors ${
+                isLiked 
+                  ? 'bg-red-100 text-red-500' 
+                  : isScrolled ? 'bg-gray-100 text-gray-500' : 'bg-white/20 text-white'
+              }`}
+            >
+              <Heart 
+                className={`w-5 h-5 ${isLiked ? 'fill-red-500' : 'fill-none'}`} 
+              />
+            </motion.button>
           
             <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
               정비 예약
@@ -105,12 +140,29 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${isScrolled ? 'text-gray-700' : 'text-white'}`}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            {/* 모바일 좋아요 버튼 */}
+            <motion.button
+              onClick={handleLike}
+              whileTap={{ scale: 0.9 }}
+              className={`flex items-center justify-center p-2 rounded-full transition-colors ${
+                isLiked 
+                  ? 'bg-red-100 text-red-500' 
+                  : isScrolled ? 'bg-gray-100 text-gray-500' : 'bg-white/20 text-white'
+              }`}
+            >
+              <Heart 
+                className={`w-5 h-5 ${isLiked ? 'fill-red-500' : 'fill-none'}`} 
+              />
+            </motion.button>
+            
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`p-2 ${isScrolled ? 'text-gray-700' : 'text-white'}`}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
