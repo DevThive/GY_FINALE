@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
@@ -8,6 +8,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +57,11 @@ const Header = () => {
     setIsLiked(newLikeStatus);
     localStorage.setItem('isLiked', newLikeStatus.toString());
     
+    // 하트 애니메이션 표시
+    if (newLikeStatus) {
+      setShowHeartAnimation(true);
+      setTimeout(() => setShowHeartAnimation(false), 1500);
+    }
     toast({
       title: newLikeStatus ? "❤️ 좋아요!" : "💔 좋아요 취소",
       description: newLikeStatus 
@@ -80,20 +86,59 @@ const Header = () => {
         isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
+      {/* 하트 애니메이션 효과 */}
+      <AnimatePresence>
+        {showHeartAnimation && (
+          <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1.2, 1], opacity: [0, 1, 0] }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            >
+              <Heart className="w-32 h-32 fill-red-500 text-red-500" />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+      
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">GM</span>
-            </div>
-            <span className={`text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
-              고양모터스
-            </span>
-          </motion.div>
+          {/* Logo with Like Button */}
+          <div className="flex items-center">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-2"
+            >
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">GM</span>
+              </div>
+              <span className={`text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+                고양모터스
+              </span>
+            </motion.div>
+            
+            {/* 좋아요 버튼 (로고 옆) */}
+            <motion.button
+              onClick={handleLike}
+              whileTap={{ scale: 0.7 }}
+              whileHover={{ scale: 1.1 }}
+              className={`ml-3 flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
+                isLiked 
+                  ? 'bg-red-100 text-red-500 shadow-md' 
+                  : isScrolled ? 'bg-gray-100 text-gray-500 hover:bg-gray-200' : 'bg-white/20 text-white hover:bg-white/30'
+              }`}
+            >
+              <motion.div
+                animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
+                transition={{ duration: 0.4 }}
+              >
+                <Heart 
+                  className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-red-500 stroke-red-500' : 'fill-none'}`} 
+                />
+              </motion.div>
+            </motion.button>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8"> {/* md:flex로 변경 */}
@@ -118,21 +163,6 @@ const Header = () => {
                 031-123-4567
               </span>
             </div>
-            
-            {/* 좋아요 버튼 */}
-            <motion.button
-              onClick={handleLike}
-              whileTap={{ scale: 0.9 }}
-              className={`flex items-center justify-center p-2 rounded-full transition-colors ${
-                isLiked 
-                  ? 'bg-red-100 text-red-500' 
-                  : isScrolled ? 'bg-gray-100 text-gray-500' : 'bg-white/20 text-white'
-              }`}
-            >
-              <Heart 
-                className={`w-5 h-5 ${isLiked ? 'fill-red-500' : 'fill-none'}`} 
-              />
-            </motion.button>
           
             <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
               정비 예약
@@ -140,22 +170,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            {/* 모바일 좋아요 버튼 */}
-            <motion.button
-              onClick={handleLike}
-              whileTap={{ scale: 0.9 }}
-              className={`flex items-center justify-center p-2 rounded-full transition-colors ${
-                isLiked 
-                  ? 'bg-red-100 text-red-500' 
-                  : isScrolled ? 'bg-gray-100 text-gray-500' : 'bg-white/20 text-white'
-              }`}
-            >
-              <Heart 
-                className={`w-5 h-5 ${isLiked ? 'fill-red-500' : 'fill-none'}`} 
-              />
-            </motion.button>
-            
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 ${isScrolled ? 'text-gray-700' : 'text-white'}`}
