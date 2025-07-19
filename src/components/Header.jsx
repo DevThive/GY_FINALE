@@ -32,9 +32,9 @@ const Header = () => {
   };
 
   const handleNavigation = (item) => {
-    if (item.id === 'cars') {
+    if (item.id === 'jnug') {
       // '정비글'은 새로운 페이지로 이동
-      window.location.href = '/cars'; // 실제 '정비글' 페이지 경로로 변경해주세요
+      window.location.href = '/jnug'; // 실제 '정비글' 페이지 경로로 변경해주세요
     } else {
       // 그 외 항목은 스크롤 이동
       scrollToSection(item.id);
@@ -70,12 +70,13 @@ const Header = () => {
     });
   };
 
+
   const navItems = [
     { name: '홈', id: 'home' },
     { name: '서비스', id: 'services' },
     { name: '고객 후기', id: 'reviews' },
     { name: '연락처', id: 'contact' },
-    { name: '정비글', id: 'cars' }
+    { name: '정비글', id: 'jnug' }
   ];
 
   return (
