@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +35,8 @@ const Header = () => {
 
   const handleNavigation = (item) => {
     if (item.id === 'jnug') {
-      // '정비글'은 새로운 페이지로 이동
-      window.location.href = '/jnug'; // 실제 '정비글' 페이지 경로로 변경해주세요
+      navigate('/Jung');
     } else {
-      // 그 외 항목은 스크롤 이동
       scrollToSection(item.id);
     }
   };
