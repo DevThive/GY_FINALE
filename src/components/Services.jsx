@@ -103,13 +103,13 @@ const Services = () => {
               </ul>
 
               {/* CTA */}
-              <Button 
+              {/* <Button 
                 onClick={() => handleServiceInquiry(service.title)}
                 variant="outline" 
                 className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
               >
                 예약 문의
-              </Button>
+              </Button> */}
             </motion.div>
           ))}
         </div>
@@ -151,12 +151,12 @@ const Services = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button 
+            {/* <Button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4"
             >
               지금 예약하기
-            </Button>
+            </Button> */}
           </div>
         </motion.div>
       </div>

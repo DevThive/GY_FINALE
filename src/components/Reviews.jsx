@@ -206,22 +206,22 @@ const Reviews = () => {
             더 나은 서비스 개선에 도움을 주세요.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            {/* <Button 
               onClick={handleWriteReview}
               className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4"
             >
               후기 작성하기
-            </Button>
-            <Button 
-              onClick={() => toast({
-                title: "📋 더 많은 후기",
-                description: "🚧 이 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
-              })}
-              variant="outline" 
-              className="border-white text-black hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
-            >
-              더 많은 후기 보기
-            </Button>
+            </Button> */}
+            <Button
+  onClick={() => window.open(
+    "https://map.naver.com/p/search/%EA%B3%A0%EC%96%91%EB%AA%A8%ED%84%B0%EC%8A%A4%20%EC%9D%BC%EC%82%B0/place/765914996?placePath=/review?reviewItem=0&photoUsed=true&from=map&fromNxList=true&fromPanelNum=2&timestamp=202507151828&locale=ko&svcName=map_pcv5&searchText=%EA%B3%A0%EC%96%91%EB%AA%A8%ED%84%B0%EC%8A%A4%20%EC%9D%BC%EC%82%B0&searchType=place&c=15.00,0,0,0,dh",
+    "_blank" // 새 탭에서 열기
+  )}
+  variant="outline"
+  className="border-white text-black hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
+>
+  더 많은 후기 보기
+</Button>
           </div>
         </motion.div>
       </div>

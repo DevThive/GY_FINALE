@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
@@ -7,117 +6,21 @@ import Services from '@/components/Services';
 import Reviews from '@/components/Reviews';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import { ChannelTalkProvider } from './context/ChannelTalkContext';
-import ChannelTalkController from './components/ChannelTalk/ChannelTalkController';
-import ChannelTalkButton from './components/ChannelTalk/ChannelTalkButton';
-import ChannelTalkFloatingButton from './components/ChannelTalk/ChannelTalkFloatingButton';
-import ChannelTalkStatus from './components/ChannelTalk/ChannelTalkStatus';
+import Jnug from '@/components/Jnug';
+// import { ChannelTalkProvider } from './context/ChannelTalkContext';
+// import ChannelTalkController from './components/ChannelTalk/ChannelTalkController';
+// import ChannelTalkButton from './components/ChannelTalk/ChannelTalkButton';
+// import ChannelTalkFloatingButton from './components/ChannelTalk/ChannelTalkFloatingButton';
+// import ChannelTalkStatus from './components/ChannelTalk/ChannelTalkStatus';
 import { Toaster } from '@/components/ui/toaster';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-useEffect(() => {
-    // 사용자 정보 로드 (예: 로그인 상태 확인)
-    const loadUser = async () => {
-      try {
-        const userData = localStorage.getItem('user');
-        if (userData) {
-          const parsedUser = JSON.parse(userData);
-          setUser(parsedUser);
-          setIsLoggedIn(true);
-        }
-      } catch (error) {
-        console.error('사용자 정보 로드 실패:', error);
-      }
-    };
-
-    loadUser();
-  }, []);
-
-  const handleLogin = () => {
-    const userData = {
-      name: '홍길동',
-      email: 'hong@example.com',
-      userId: '12345',
-      phone: '010-1234-5678'
-    };
-    
-    setUser(userData);
-    setIsLoggedIn(true);
-    localStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    setIsLoggedIn(false);
-    localStorage.removeItem('user');
-  };
+  // const [user, setUser] = useState(null);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+   
 
   return (
     <div className="min-h-screen bg-white">
-
-    <ChannelTalkProvider>
-      <div className="App">
-        <header className="App-header">
-          <h1>My App</h1>
-          <nav>
-            {!isLoggedIn ? (
-              <button onClick={handleLogin}>로그인</button>
-            ) : (
-              <button onClick={handleLogout}>로그아웃</button>
-            )}
-            <ChannelTalkButton className="header-chat-button">
-              채팅 상담
-            </ChannelTalkButton>
-          </nav>
-        </header>
-
-        <main>
-          <section>
-            <h2>메인 콘텐츠</h2>
-            <p>웹사이트 내용입니다.</p>
-            
-            <div className="button-group">
-              <ChannelTalkButton variant="primary" size="large">
-                문의하기
-              </ChannelTalkButton>
-              <ChannelTalkButton variant="secondary" size="small">
-                빠른 상담
-              </ChannelTalkButton>
-            </div>
-          </section>
-
-          <section>
-            <h3>채널톡 상태</h3>
-            <ChannelTalkStatus />
-          </section>
-        </main>
-
-        <footer>
-          <p>© 2024 My Company</p>
-          <ChannelTalkButton className="footer-chat-button">
-            고객센터
-          </ChannelTalkButton>
-        </footer>
-
-        {/* 플로팅 버튼 */}
-        <ChannelTalkFloatingButton 
-          position="bottom-right"
-          showOnScroll={true}
-          scrollThreshold={200}
-        />
-
-        {/* 채널톡 컨트롤러 */}
-        <ChannelTalkController
-          userInfo={user}
-          showOnPages={['/home', '/products', '/support']}
-          hideOnPages={['/admin', '/login']}
-          autoShow={true}
-        />
-      </div>
-    </ChannelTalkProvider>
 
       <Helmet>
         <title>고양모터스 - 자동차 정비 및 검사 전문 센터</title>
@@ -136,6 +39,7 @@ useEffect(() => {
         <Hero />
         <Services />
         <Reviews />
+        <Jnug />
         <Contact />
       </main>
       <Footer />
