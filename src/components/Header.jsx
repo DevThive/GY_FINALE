@@ -3,14 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +33,7 @@ const Header = () => {
 
   const handleNavigation = (item) => {
     if (item.id === 'jnug') {
-      navigate('/Jung');
+      window.location.href = '/Jung'; // react-router-dom 대신 href 사용
     } else {
       scrollToSection(item.id);
     }
