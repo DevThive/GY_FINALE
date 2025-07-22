@@ -39,7 +39,6 @@ function App() {
         <Hero />
         <Services />
         <Reviews />
-        <Jnug />
         <Contact />
       </main>
       <Footer />
