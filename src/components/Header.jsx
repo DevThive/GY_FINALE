@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Heart } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react'; // Heart 아이콘 삭제
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +16,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 로컬 스토리지에서 좋아요 상태 불러오기
-  useEffect(() => {
-    const likedStatus = localStorage.getItem('isLiked') === 'true';
-    setIsLiked(likedStatus);
-  }, []);
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -33,41 +26,18 @@ const Header = () => {
 
   const handleNavigation = (item) => {
     if (item.id === 'jnug') {
-      window.location.href = '/Jung'; // react-router-dom 대신 href 사용
+      window.location.href = '/Jung';
     } else {
       scrollToSection(item.id);
     }
   };
 
   const handleCall = () => {
-    // 실제 전화 연결 기능을 추가하려면 아래 주석 해제 (모바일에서만 작동)
-    // window.location.href = 'tel:031-123-4567';
-
     toast({
       title: "📞 전화 연결",
       description: "🚧 전화 기능이 아직 구현되지 않았습니다—하지만 걱정하지 마세요! 다음 프롬프트에서 요청해 주세요! 🚀"
     });
   };
-
-  // 좋아요 버튼 클릭 핸들러
-  const handleLike = () => {
-    const newLikeStatus = !isLiked;
-    setIsLiked(newLikeStatus);
-    localStorage.setItem('isLiked', newLikeStatus.toString());
-    
-    // 하트 애니메이션 표시
-    if (newLikeStatus) {
-      setShowHeartAnimation(true);
-      setTimeout(() => setShowHeartAnimation(false), 1500);
-    }
-    toast({
-      title: newLikeStatus ? "❤️ 좋아요!" : "💔 좋아요 취소",
-      description: newLikeStatus 
-        ? "고양모터스를 좋아해 주셔서 감사합니다!" 
-        : "다시 좋아해 주실 날을 기다릴게요!"
-    });
-  };
-
 
   const navItems = [
     { name: '홈', id: 'home' },
@@ -85,25 +55,9 @@ const Header = () => {
         isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
-      {/* 하트 애니메이션 효과 */}
-      <AnimatePresence>
-        {showHeartAnimation && (
-          <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: [0, 1.2, 1], opacity: [0, 1, 0] }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            >
-              <Heart className="w-32 h-32 fill-red-500 text-red-500" />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-      
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo with Like Button */}
+          {/* Logo */}
           <div className="flex items-center">
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -116,35 +70,14 @@ const Header = () => {
                 고양모터스
               </span>
             </motion.div>
-            
-            {/* 좋아요 버튼 (로고 옆) */}
-            <motion.button
-              onClick={handleLike}
-              whileTap={{ scale: 0.7 }}
-              whileHover={{ scale: 1.1 }}
-              className={`ml-3 flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
-                isLiked 
-                  ? 'bg-red-100 text-red-500 shadow-md' 
-                  : isScrolled ? 'bg-gray-100 text-gray-500 hover:bg-gray-200' : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-            >
-              <motion.div
-                animate={isLiked ? { scale: [1, 1.3, 1] } : {}}
-                transition={{ duration: 0.4 }}
-              >
-                <Heart 
-                  className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-red-500 stroke-red-500' : 'fill-none'}`} 
-                />
-              </motion.div>
-            </motion.button>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8"> {/* md:flex로 변경 */}
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleNavigation(item)} 
+                onClick={() => handleNavigation(item)}
                 className={`font-medium transition-colors hover:text-blue-600 ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 }`}
@@ -162,8 +95,7 @@ const Header = () => {
                 031-123-4567
               </span>
             </div>
-          
-            <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
+            <Button onClick={() => handleNavigation({id: 'contact'})} className="btn-primary">
               정비 예약
             </Button>
           </div>
@@ -190,7 +122,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => handleNavigation(item)} 
+                  onClick={() => handleNavigation(item)}
                   className="text-left text-gray-700 font-medium hover:text-blue-600 transition-colors"
                 >
                   {item.name}
@@ -201,11 +133,10 @@ const Header = () => {
                   <Phone className="w-4 h-4" />
                   <span>031-123-4567</span>
                 </div>
-                {/* 모바일 메뉴에도 "연락처" 버튼 추가 */}
                 <Button onClick={handleCall} className="w-full btn-secondary mb-2">
                   연락처
                 </Button>
-                <Button onClick={() => handleNavigation({id: 'contact'})} className="w-full btn-primary"> {/* 정비 예약도 handleNavigation 사용 */}
+                <Button onClick={() => handleNavigation({id: 'contact'})} className="w-full btn-primary">
                   정비 예약
                 </Button>
               </div>
